@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { overview, goals, modules, commPlan, resources, roles, isPlaceholder } from '../data/site.js';
+import { overview, goals, modules, commPlan, resources, roles } from '../data/site.js';
 import proposalPdf from '../content/documentation/2027PEI_MariaBike_Proposal.pdf';
 
 function SectionCard({ title, icon, children }) {
@@ -16,7 +16,7 @@ export default function Docs() {
   return (
     <main className="docs-main">
       <header className="pagehead">
-        <h1>Documentation (Draft)</h1>
+        <h1>Documentation</h1>
         <p>Project overview, documents, plans, roles, tasks and deliverables in one place.</p>
       </header>
 
@@ -34,8 +34,8 @@ export default function Docs() {
                 </svg>
               </div>
               <div className="doc-file-meta">
-                <div className="doc-file-title">Project Proposal (mariaBike)</div>
-                <div className="doc-file-desc">Official PEI 2026/2027 project specification and requirements proposal.</div>
+                <div className="doc-file-title">Project Proposal</div>
+                <div className="doc-file-desc">Official PEI 2026/2027 project brief — the mariaBike use case that originated KINETIQ.</div>
                 <div className="doc-file-tags">
                   <span className="doc-file-tag available">Available</span>
                   <span className="doc-file-tag">PDF</span>
@@ -59,9 +59,8 @@ export default function Docs() {
       <SectionCard title="Project overview" icon="🚲">
         <div className="overview-body">
           <p><strong>Context.</strong> {overview.context}</p>
-          <p><strong>Problem.</strong> {overview.problem}{overview.problemDraft && <span className="badge">Draft</span>}</p>
+          <p><strong>Problem.</strong> {overview.problem}</p>
           <p><strong>Expected results.</strong> {overview.expectedResults}</p>
-          <p><strong>Related work.</strong> {overview.relatedWork}{overview.relatedWorkDraft && <span className="badge">Draft</span>}</p>
           <p className="overview-more">Full objectives list on the <Link to="/">home page</Link>.</p>
         </div>
       </SectionCard>
@@ -77,16 +76,13 @@ export default function Docs() {
         </div>
       </SectionCard>
 
-      <SectionCard title="Project plan and repository" icon="📁">
+      <SectionCard title="Project resources" icon="📁">
         <div className="info-card-grid">
           {resources.map((r) => (
             <div key={r.name} className="info-card">
               <div className="info-card-label">{r.name}</div>
-              <div className="info-card-sub">Owner: <strong>{r.owner}</strong></div>
               {r.link && r.link.startsWith('/') ? (
                 <Link to={r.link} className="info-card-badge">{r.linkLabel}</Link>
-              ) : isPlaceholder(r.link) ? (
-                <span className="info-card-badge" style={{ '--badge-color': 'var(--muted)' }}>to add</span>
               ) : (
                 <a href={r.link} target="_blank" rel="noreferrer" className="info-card-badge">Open</a>
               )}
@@ -110,17 +106,7 @@ export default function Docs() {
         </div>
       </SectionCard>
 
-      <SectionCard title="Tasks by module" icon="🧩">
-        <div className="module-list">
-          {modules.map((m) => (
-            <div className="module-card" key={m.name}>
-              <div className="module-icon">{m.icon}</div>
-              <div className="module-body"><div className="module-name">{m.name}</div><div className="module-tasks">{m.tasks}</div></div>
-              <span className="module-owner">to assign</span>
-            </div>
-          ))}
-        </div>
-      </SectionCard>
+
     </main>
   );
 }

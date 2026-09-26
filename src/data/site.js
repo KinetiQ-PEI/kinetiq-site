@@ -17,8 +17,8 @@ export function isPlaceholder(value) {
 
 export const project = {
   name: "KINETIQ",
-  fullTitle: "KINETIQ — fleet management for the mariaBike platform",
-  tagline: "A fleet management system for individual vehicles and micromobility, built on real-time telemetry.",
+  fullTitle: "KINETIQ — micromobility fleet management, initially deployed with mariaBike",
+  tagline: "An extensible fleet management platform for micromobility, built on real-time telemetry.",
   course: "Projeto em Engenharia Informática",
   university: "Universidade de Aveiro",
   academicYear: "2026/2027",
@@ -26,7 +26,6 @@ export const project = {
 
 export const links = {
   github: "https://github.com/KinetiQ-PEI/kinetiq-site",
-  jira: "[JIRA LINK]",
   mariaBike: "https://mariabike.com/en/",
 };
 
@@ -35,18 +34,15 @@ export const links = {
 // ---------------------------------------------------------------------------
 
 export const overview = {
-  context: "The mariaBike platform already produces a continuous stream of data from embedded sensors, smartwatch connectivity, mobile interfaces and cloud telemetry.",
-  problem: "As fleets grow, that data goes untreated. Current eBike fleet solutions stop at basic GPS tracking and battery monitoring, with no foundation for lifecycle management, usage analytics or extensible data services.",
-  problemDraft: true,
-  expectedResults: "A deployed event-driven back office for mariaBike, a service layer with CO₂ footprint and usage analytics modules, an operator dashboard, and an evaluation of extensibility, latency and scalability.",
-  relatedWork: "To be written during the state-of-the-art phase: fleet management systems, event-driven architectures and the mariaBike platform audit.",
-  relatedWorkDraft: true,
+  context: "mariaBike is a micromobility platform that already produces a continuous stream of data from embedded sensors, smartwatch connectivity, mobile interfaces and cloud telemetry. KINETIQ uses mariaBike as its first deployment target.",
+  problem: "Existing fleet management platforms are designed for cars, trucks and large vehicle fleets. For micromobility — eBikes, scooters and light electric vehicles — available solutions stop at basic GPS tracking and battery monitoring, with no integrated approach to lifecycle management, usage analytics or extensible data services.",
+  expectedResults: "A deployed event-driven back office initially integrated with mariaBike, a service layer with CO₂ footprint and usage analytics modules, an operator dashboard, and an evaluation of extensibility, latency and scalability.",
 };
 
-export const flow = ["mariaBike sensors", "Event broker", "Fleet management", "Services and APIs", "Dashboard"];
+export const flow = ["Vehicle sensors", "Event broker", "Fleet management", "Services and APIs", "Dashboard"];
 
 export const goals = [
-  "Ingest mariaBike telemetry in real time with an event-driven architecture (Kafka or MQTT).",
+  "Ingest real-time telemetry with an event-driven architecture (Kafka or MQTT), initially from the mariaBike fleet.",
   "Manage each bike's lifecycle (registration, maintenance, usage history) and aggregated fleet metrics.",
   "Expose extensible APIs for value-added services, with at least two concrete implementations.",
   "Deliver a back-office dashboard for operators to monitor telemetry, lifecycle and service KPIs.",
@@ -149,7 +145,7 @@ export const roadmap = [
   {
     phase: "Inception", items: [
       { when: "15 Sep 2026 (week 1)", block: "Course kick-off", text: "Presentation of the course and the project proposals." },
-      { when: "22 Sep 2026 (week 2)", block: "Team & setup", text: "Team confirmed on mariaBike. Initial Git and Jira setup." },
+      { when: "22 Sep 2026 (week 2)", block: "Team & setup", text: "Team confirmed on the mariaBike project. Initial Git and Jira setup." },
       { when: "29 Sep 2026 (week 3)", block: "Milestone 1", text: "Lifecycle objectives, calendar, site structure and presentation." },
       { when: "6 to 20 Oct 2026", block: "Analysis & requirements", text: "Market study and audit of the mariaBike platform." },
     ]
@@ -187,9 +183,8 @@ export const commPlan = [
 ];
 
 export const resources = [
-  { name: "Project plan (Jira)", owner: "João Tomásio", link: links.jira },
-  { name: "Git repository", owner: "Santiago Gandarez", link: links.github },
-  { name: "Project calendar", owner: "Maria Mané", link: "/calendar", linkLabel: "Calendar" },
+  { name: "Git repository", link: links.github },
+  { name: "Project calendar", link: "/calendar", linkLabel: "Calendar" },
 ];
 
 export const roles = [

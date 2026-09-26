@@ -45,39 +45,85 @@ function TopNav() {
     try { return localStorage.getItem('theme') || 'light'; } catch { return 'light'; }
   });
   const [menuOpen, setMenuOpen] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
     document.documentElement.dataset.theme = theme;
     try { localStorage.setItem('theme', theme); } catch {}
   }, [theme]);
 
+  // Close menu on route changes
+  useEffect(() => {
+    setMenuOpen(false);
+  }, [location.pathname]);
+
+  // Close menu on Escape key
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') setMenuOpen(false);
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
+
   const toggleTheme = () => setTheme(t => t === 'dark' ? 'light' : 'dark');
 
   return (
-    <header className="top">
-      <NavLink to="/" className="logo">KINET<span>IQ</span></NavLink>
-      <button className="btn-icon" id="menu" style={{ display: 'none' }} onClick={() => setMenuOpen(o => !o)}>Menu</button>
-      <nav id="nav" className={menuOpen ? 'open' : ''}>
-        {pages.map(p => (
-          <NavLink
-            key={p.path}
-            to={p.path}
-            end={p.end}
-            className={({ isActive }) => isActive ? 'active' : ''}
-          >
-            {p.label}
-          </NavLink>
-        ))}
-        <button
-          className="theme-toggle"
-          aria-label={theme === 'dark' ? 'Switch to light theme' : 'Switch to dark theme'}
-          title={theme === 'dark' ? 'Switch to light theme' : 'Switch to dark theme'}
-          onClick={toggleTheme}
-        >
-          {theme === 'dark' ? <IconMoon /> : <IconSun />}
-        </button>
-      </nav>
-    </header>
+    <>
+      <header className="top">
+        <NavLink to="/" className="logo" onClick={() => setMenuOpen(false)}>
+          KINET<span>IQ</span>
+        </NavLink>
+
+        <div className="header-nav-group">
+          <nav id="nav" className={menuOpen ? 'open' : ''}>
+            {pages.map(p => (
+              <NavLink
+                key={p.path}
+                to={p.path}
+                end={p.end}
+                className={({ isActive }) => isActive ? 'active' : ''}
+                onClick={() => setMenuOpen(false)}
+              >
+                {p.label}
+              </NavLink>
+            ))}
+          </nav>
+
+          <div className="top-actions">
+            <button
+              className="theme-toggle"
+              aria-label={theme === 'dark' ? 'Switch to light theme' : 'Switch to dark theme'}
+              title={theme === 'dark' ? 'Switch to light theme' : 'Switch to dark theme'}
+              onClick={toggleTheme}
+            >
+              {theme === 'dark' ? <IconMoon /> : <IconSun />}
+            </button>
+
+            <button
+              type="button"
+              className={`burger-btn ${menuOpen ? 'open' : ''}`}
+              id="menu"
+              aria-label={menuOpen ? "Close menu" : "Open menu"}
+              aria-expanded={menuOpen}
+              onClick={() => setMenuOpen(o => !o)}
+            >
+              <span className="burger-line" />
+              <span className="burger-line" />
+              <span className="burger-line" />
+            </button>
+          </div>
+        </div>
+      </header>
+
+      {menuOpen && (
+        <div
+          className="nav-backdrop"
+          onClick={() => setMenuOpen(false)}
+          aria-hidden="true"
+        />
+      )}
+    </>
   );
 }
 
@@ -99,6 +145,7 @@ function App() {
         <Route path="/docs" element={<Docs />} />
         <Route path="/minutes" element={<MinutesList />} />
         <Route path="/minutes/:slug" element={<MinuteDetail />} />
+        <Route path="*" element={<Home />} />
       </Routes>
       <AppFooter />
     </Router>
