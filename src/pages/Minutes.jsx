@@ -14,7 +14,7 @@ export function MinutesList() {
   return (
     <main>
       <header className="pagehead">
-        <h1>Minutes (Draft)</h1>
+        <h1>Minutes</h1>
         <p>
           One Markdown file per meeting, in <code>src/content/minutes</code>. Copy <code>_TEMPLATE.md</code>,
           fill it in, commit — it appears here automatically, newest first.

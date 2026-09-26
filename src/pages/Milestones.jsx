@@ -18,6 +18,21 @@ export default function Milestones() {
               <div className="ms-top"><h3>{m.id}: {m.title}</h3><span className="date">{m.label}</span></div>
               <small>{m.phase} phase{i === nextI ? ', up next' : ''}</small>
               <p>{m.text}</p>
+              {m.deliverable && (
+                <div className="ms-deliverable">
+                  <div className="ms-deliverable-label">
+                    <span className="ms-deliverable-icon" aria-hidden="true">📄</span>
+                    <span className="ms-deliverable-name">{m.deliverable}</span>
+                  </div>
+                  {m.deliverableLink ? (
+                    <a href={m.deliverableLink} target="_blank" rel="noreferrer" className="doc-btn primary">
+                      View Presentation ↗
+                    </a>
+                  ) : (
+                    <span className="ms-deliverable-tag">Upcoming</span>
+                  )}
+                </div>
+              )}
             </div>
           </li>
         ))}

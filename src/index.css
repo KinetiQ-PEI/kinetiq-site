@@ -147,6 +147,32 @@ nav a.active {
   margin-left: 8px;
 }
 .btn-icon:hover { border-color: var(--accent); color: var(--ink); }
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--muted);
+  cursor: pointer;
+  transition: color 0.15s, border-color 0.15s, background 0.15s, transform 0.2s var(--ease);
+  margin-left: 8px;
+  flex-shrink: 0;
+}
+.theme-toggle:hover {
+  border-color: var(--amber);
+  color: var(--amber);
+  transform: rotate(20deg) scale(1.05);
+}
+[data-theme="dark"] .theme-toggle:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  transform: rotate(-15deg) scale(1.05);
+}
 
 /* ── Main layout ── */
 main {
@@ -621,6 +647,41 @@ td:first-child { font-weight: 600; color: var(--ink); }
 .ms p { margin: 0.5rem 0 0; color: var(--ink-2); font-size: 0.95rem; }
 .ms small { color: var(--muted); font-size: 0.8rem; font-weight: 500; }
 
+.ms-deliverable {
+  margin-top: 1rem;
+  padding-top: 0.85rem;
+  border-top: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.ms-deliverable-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--ink-2);
+}
+
+.ms-deliverable-icon {
+  font-size: 0.95rem;
+}
+
+.ms-deliverable-tag {
+  font: 600 0.72rem 'Space Grotesk', sans-serif;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 0.2rem 0.65rem;
+  border-radius: var(--radius-full);
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+  color: var(--muted);
+}
+
 /* Other dates table */
 section > .scroll { margin-top: 0; }
 
@@ -743,6 +804,7 @@ footer {
   .btn-icon#menu { display: block; }
   nav { display: none; position: absolute; top: var(--nav-h); left: 0; right: 0; flex-direction: column; align-items: stretch; background: var(--surface); padding: 0.75rem; border-bottom: 1px solid var(--line); gap: 2px; }
   nav.open { display: flex; }
+  .theme-toggle { align-self: flex-start; margin: 0.5rem 0.75rem; }
   .cal-cell { min-height: 70px; }
 }
 
@@ -787,6 +849,137 @@ footer {
 .doc-section-icon {
   font-size: 1.1rem;
   line-height: 1;
+}
+
+/* Document file cards */
+.doc-file-list {
+  padding: 1rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.doc-file-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.25rem;
+  padding: 1rem 1.25rem;
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  transition: all 0.2s var(--ease);
+}
+.doc-file-card:hover {
+  border-color: var(--accent);
+  box-shadow: var(--shadow-sm);
+}
+
+.doc-file-info {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  min-width: 0;
+}
+
+.doc-file-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: var(--radius-md);
+  background: color-mix(in srgb, #ef4444 12%, transparent);
+  color: #ef4444;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.doc-file-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  min-width: 0;
+}
+
+.doc-file-title {
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--ink);
+}
+
+.doc-file-desc {
+  font-size: 0.82rem;
+  color: var(--muted);
+}
+
+.doc-file-tags {
+  display: flex;
+  gap: 0.4rem;
+  align-items: center;
+  margin-top: 0.25rem;
+  flex-wrap: wrap;
+}
+
+.doc-file-tag {
+  font: 600 0.72rem 'Space Grotesk', sans-serif;
+  letter-spacing: 0.04em;
+  padding: 0.15rem 0.5rem;
+  border-radius: var(--radius-full);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  color: var(--muted);
+}
+.doc-file-tag.available {
+  background: color-mix(in srgb, var(--green) 12%, transparent);
+  color: var(--green);
+  border-color: color-mix(in srgb, var(--green) 25%, transparent);
+}
+
+.doc-file-actions {
+  display: flex;
+  gap: 0.5rem;
+  flex-shrink: 0;
+}
+
+.doc-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.4rem 0.85rem;
+  font: 500 0.82rem 'Space Grotesk', sans-serif;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--ink-2);
+  transition: all 0.15s var(--ease);
+  cursor: pointer;
+  text-decoration: none;
+}
+.doc-btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: var(--surface-2);
+  opacity: 1;
+}
+.doc-btn.primary {
+  background: var(--accent);
+  color: var(--on-accent);
+  border-color: var(--accent);
+}
+.doc-btn.primary:hover {
+  opacity: 0.9;
+  color: var(--on-accent);
+}
+
+@media (max-width: 640px) {
+  .doc-file-card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .doc-file-actions {
+    width: 100%;
+    margin-top: 0.5rem;
+  }
 }
 
 /* Meeting rows */
@@ -943,38 +1136,6 @@ footer {
   flex-shrink: 0;
 }
 
-/* Deliverable rows */
-.deliverable-list {
-  padding: 0.5rem 1.5rem 1rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
-.deliverable-row {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  padding: 0.85rem 1rem;
-  background: var(--surface-2);
-  border: 1px solid var(--line);
-  border-radius: var(--radius-md);
-  transition: all 0.2s var(--ease);
-}
-.deliverable-row:hover { border-color: var(--accent); box-shadow: var(--shadow-sm); }
-.deliverable-ms {
-  font: 700 0.8rem 'Space Grotesk', sans-serif;
-  letter-spacing: 0.06em;
-  padding: 0.2rem 0.65rem;
-  border-radius: var(--radius-full);
-  background: var(--accent-2);
-  color: var(--accent);
-  border: 1px solid color-mix(in srgb, var(--accent) 25%, transparent);
-  white-space: nowrap;
-  flex-shrink: 0;
-}
-.deliverable-name { flex: 1; font-size: 0.9rem; font-weight: 500; color: var(--ink-2); }
-.deliverable-link { font-size: 0.78rem; color: var(--muted); white-space: nowrap; }
 
 /* ── Roadmap (full lifecycle, on Calendar page) ── */
 .roadmap { display: flex; flex-direction: column; gap: 1.75rem; margin-top: 1.5rem; }

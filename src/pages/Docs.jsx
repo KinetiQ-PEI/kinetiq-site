@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { overview, goals, modules, commPlan, resources, roles, deliverables, isPlaceholder } from '../data/site.js';
+import { overview, goals, modules, commPlan, resources, roles, isPlaceholder } from '../data/site.js';
+import proposalPdf from '../content/documentation/2027PEI_MariaBike_Proposal.pdf';
 
 function SectionCard({ title, icon, children }) {
   return (
@@ -16,8 +17,44 @@ export default function Docs() {
     <main className="docs-main">
       <header className="pagehead">
         <h1>Documentation (Draft)</h1>
-        <p>Project overview, plans, roles, tasks and deliverables in one place. Items marked "to add" are still being defined.</p>
+        <p>Project overview, documents, plans, roles, tasks and deliverables in one place.</p>
       </header>
+
+      <SectionCard title="Project documents" icon="📁">
+        <div className="doc-file-list">
+          <div className="doc-file-card">
+            <div className="doc-file-info">
+              <div className="doc-file-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                  <polyline points="14 2 14 8 20 8" />
+                  <line x1="16" y1="13" x2="8" y2="13" />
+                  <line x1="16" y1="17" x2="8" y2="17" />
+                  <polyline points="10 9 9 9 8 9" />
+                </svg>
+              </div>
+              <div className="doc-file-meta">
+                <div className="doc-file-title">Project Proposal (mariaBike)</div>
+                <div className="doc-file-desc">Official PEI 2026/2027 project specification and requirements proposal.</div>
+                <div className="doc-file-tags">
+                  <span className="doc-file-tag available">Available</span>
+                  <span className="doc-file-tag">PDF</span>
+                  <span className="doc-file-tag">77 KB</span>
+                  <span className="doc-file-tag">Inception</span>
+                </div>
+              </div>
+            </div>
+            <div className="doc-file-actions">
+              <a href={proposalPdf} target="_blank" rel="noreferrer" className="doc-btn primary">
+                View PDF ↗
+              </a>
+              <a href={proposalPdf} download="2027PEI_MariaBike_Proposal.pdf" className="doc-btn">
+                Download
+              </a>
+            </div>
+          </div>
+        </div>
+      </SectionCard>
 
       <SectionCard title="Project overview" icon="🚲">
         <div className="overview-body">
@@ -58,7 +95,7 @@ export default function Docs() {
         </div>
       </SectionCard>
 
-      <SectionCard title="Roles and activities" icon="👤">
+      <SectionCard title="Ongoing roles" icon="👤">
         <div className="role-list">
           {roles.map((r) => (
             <div className="role-pill" key={r.member}>
@@ -80,18 +117,6 @@ export default function Docs() {
               <div className="module-icon">{m.icon}</div>
               <div className="module-body"><div className="module-name">{m.name}</div><div className="module-tasks">{m.tasks}</div></div>
               <span className="module-owner">to assign</span>
-            </div>
-          ))}
-        </div>
-      </SectionCard>
-
-      <SectionCard title="Reports and presentations" icon="📄">
-        <div className="deliverable-list">
-          {deliverables.map((d) => (
-            <div key={d.ms} className="deliverable-row">
-              <span className="deliverable-ms">{d.ms}</span>
-              <span className="deliverable-name">{d.name}</span>
-              <span className="deliverable-link">to add</span>
             </div>
           ))}
         </div>

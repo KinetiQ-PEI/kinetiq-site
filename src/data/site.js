@@ -25,7 +25,7 @@ export const project = {
 };
 
 export const links = {
-  github: "[GITHUB LINK]",
+  github: "https://github.com/KinetiQ-PEI/kinetiq-site",
   jira: "[JIRA LINK]",
   mariaBike: "https://mariabike.com/en/",
 };
@@ -84,10 +84,46 @@ export const partners = [
 // ---------------------------------------------------------------------------
 
 export const milestones = [
-  { id: "MS1", title: "Lifecycle objectives", phase: "Inception", dates: ["2026-09-29"], label: "29 Sep 2026", text: "Presentation of the lifecycle objectives and the project calendar." },
-  { id: "MS2", title: "Lifecycle architecture", phase: "Elaboration", dates: ["2026-10-13", "2026-10-20"], label: "13 to 20 Oct 2026", text: "Presentation of the architecture; achieved once the architecture is validated." },
-  { id: "MS3", title: "Accessibility and usability", phase: "Construction", dates: ["2026-11-03", "2026-11-10"], label: "3 to 10 Nov 2026", text: "Digital accessibility and usability of the system." },
-  { id: "MS4", title: "MVP", phase: "Construction", dates: ["2026-12-15", "2026-12-16"], label: "15 to 16 Dec 2026", text: "MVP presented to the supervisors, with peer evaluation." },
+  {
+    id: "MS1",
+    title: "Lifecycle objectives",
+    phase: "Inception",
+    dates: ["2026-09-29"],
+    label: "29 Sep 2026",
+    text: "Presentation of the lifecycle objectives and the project calendar.",
+    deliverable: "Project presentation, calendar and communication plan",
+    deliverableLink: null,
+  },
+  {
+    id: "MS2",
+    title: "Lifecycle architecture",
+    phase: "Elaboration",
+    dates: ["2026-10-13", "2026-10-20"],
+    label: "13 to 20 Oct 2026",
+    text: "Presentation of the architecture; achieved once the architecture is validated.",
+    deliverable: "Architecture presentation and validation",
+    deliverableLink: null,
+  },
+  {
+    id: "MS3",
+    title: "Accessibility and usability",
+    phase: "Construction",
+    dates: ["2026-11-03", "2026-11-10"],
+    label: "3 to 10 Nov 2026",
+    text: "Digital accessibility and usability of the system.",
+    deliverable: "Accessibility and usability evaluation",
+    deliverableLink: null,
+  },
+  {
+    id: "MS4",
+    title: "MVP",
+    phase: "Construction",
+    dates: ["2026-12-15", "2026-12-16"],
+    label: "15 to 16 Dec 2026",
+    text: "MVP presented to the supervisors, with peer evaluation.",
+    deliverable: "MVP demonstration and presentation",
+    deliverableLink: null,
+  },
 ];
 
 export const nearTermEvents = {
@@ -163,10 +199,4 @@ export const roles = [
   { member: "Santiago Gandarez", role: "Repository", activities: "Git organisation and repository" },
   { member: "Maria Mané", role: "Project calendar", activities: "Schedule, milestones and deliverables" },
   { member: "Everyone", role: "State of the art", activities: "Market study" },
-];
-
-export const deliverables = [
-  { name: "Project presentation, calendar and communication plan", ms: "MS1" },
-  { name: "Architecture presentation", ms: "MS2" },
-  { name: "MVP presentation", ms: "MS4" },
 ];
