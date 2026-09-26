@@ -1,34 +1,48 @@
-# KINETIQ
+# KinetiQ — Project Microsite
 
-Microsite for **KINETIQ**, built as PEI (2026/2027) at the Universidade de Aveiro, for the mariaBike platform.
+Microsite for **KinetiQ**, a fleet management system for individual vehicles and micromobility built on real-time telemetry. Developed as part of **PEI 2026/2027** at the Universidade de Aveiro, in partnership with the mariaBike platform.
 
-Built with Vite + React, no CSS framework (styles live in `src/index.css`, with variables driving light/dark mode). Uses `HashRouter`, so routes work on GitHub Pages with no extra config.
+**Live site →** https://kinetiq-pei.github.io/kinetiq-site/  
+**Repository →** https://github.com/KinetiQ-PEI/kinetiq-site
+
+---
+
+## Tech stack
+
+- **Vite + React** — no CSS framework; all styles live in `src/index.css` with CSS variables driving light/dark mode
+- **HashRouter** — routes work on GitHub Pages without any server config
+- **GitHub Actions** — auto-deploys to GitHub Pages on every push to `main`
+
+---
 
 ## Getting started
 
-Needs Node 20+.
+Requires **Node 20+**.
 
 ```bash
 npm install
-npm run dev      # http://localhost:5173
-npm run build    # outputs to dist/
+npm run dev      # → http://localhost:5173
 ```
 
-## Where to edit things
+---
 
-Day-to-day work happens in two places:
+## Where to edit content
 
-- **`src/data/site.js`** — all the site's text: team, advisors, partners, goals, modules, milestones, and the Documentation page tables. Pages only read from here, they don't hold any text themselves.
-- **`src/content/minutes/`** — one meeting minute per file. See below.
+Almost everything is data, not code. Day-to-day edits happen in two places:
 
-Fields in square brackets (`[NMEC]`, `[GITHUB LINK]`) in `site.js` are placeholders — swap them for the real value once you have it.
+| File | What it controls |
+|---|---|
+| `src/data/site.js` | Team, advisors, partners, goals, modules, milestones, roadmap, docs tables — all page text |
+| `src/content/minutes/` | One Markdown file per meeting minute |
 
-## Meeting minutes
+Pages read from `site.js`; they hold no text themselves.
 
-Each minute is its own Markdown file, not a hand-written list:
+---
 
-1. Copy `src/content/minutes/_TEMPLATE.md` into a new file in the same folder (files starting with `_` are ignored).
-2. Fill in the header:
+## Adding a meeting minute
+
+1. Copy `src/content/minutes/_TEMPLATE.md` into a new file in the same folder (files starting with `_` are ignored by the loader).
+2. Fill in the frontmatter:
    ```md
    ---
    number: 2
@@ -38,17 +52,13 @@ Each minute is its own Markdown file, not a hand-written list:
    time: 16:00
    ---
    ```
-3. Write the minute in plain Markdown below (tables, task lists, etc. all work).
-4. Commit and push. It shows up on the Minutes page on its own, newest first, with its own page (`#/minutes/02-...`).
+3. Write the body in plain Markdown below (tables, task lists, headings all work).
+4. Commit and push — it appears on the Minutes page automatically, newest first.
 
-## Calendar and roadmap
+---
 
-The Calendar page has two parts: a monthly grid with the course's official dates (MS1 to MS4, seminars, check point), and below it, the full project roadmap through to the defence, following the four OpenUP phases. Both data sets live in `src/data/site.js` (`nearTermEvents` and `roadmap`), not in the component.
+## Deployment
 
-## Deploying
+Pushes to `main` trigger `.github/workflows/deploy.yml`, which builds the site and publishes it to GitHub Pages.
 
-`.github/workflows/deploy.yml` builds and publishes to GitHub Pages on every push to `main`. Before that works, enable it once in **Settings → Pages → Build and deployment → Source: GitHub Actions**.
-
-`vite.config.js` uses `base: './'`, so the site works both at `https://<org>.github.io/` and `https://<org>.github.io/<repo>/` without changes. Once the repository exists, update this line with the real address:
-
-> `https://<org>.github.io/<repo>/#/`
+**One-time setup:** go to **Settings → Pages → Build and deployment** and set the source to **GitHub Actions**.
