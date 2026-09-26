@@ -2,7 +2,8 @@
 
 Microsite for **KinetiQ**, a fleet management system for individual vehicles and micromobility built on real-time telemetry. Developed as part of **PEI 2026/2027** at the Universidade de Aveiro, in partnership with the mariaBike platform.
 
-**Live site →** https://kinetiq-pei.github.io/
+**Live site →** https://kinetiq-pei.github.io/kinetiq-site/
+
 **Repository →** https://github.com/KinetiQ-PEI/kinetiq-site
 
 ---

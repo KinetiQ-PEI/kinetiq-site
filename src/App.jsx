@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route, NavLink, useLocation } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route, NavLink, useLocation } from 'react-router-dom';
 import Home from './pages/Home';
 import Team from './pages/Team';
 import Milestones from './pages/Milestones';
