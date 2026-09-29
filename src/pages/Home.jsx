@@ -1,6 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { project, flow, goals } from '../data/site.js';
+import logoBlack from '../content/logo_black_kinetiq.png';
+import logoWhite from '../content/logo_white_kinetiq.png';
 
 /* ── Animated Route Map (soft version) ── */
 function SoftRouteMap({ blurAmount }) {
@@ -112,7 +114,10 @@ export default function Home() {
         <div className="hero-left">
           <div className="hero-inner">
             <p className="hero-eyebrow">{project.course} · {project.academicYear} · {project.university}</p>
-            <h1 className="hero-title">KINET<span>IQ</span></h1>
+            <h1 className="hero-brand">
+              <img src={logoBlack} alt="KinetiQ" className="hero-logo hero-logo-light" />
+              <img src={logoWhite} alt="KinetiQ" className="hero-logo hero-logo-dark" />
+            </h1>
             <p className="hero-slogan">{project.tagline}</p>
             <div className="btns" style={{ marginBottom: 0 }}>
               <Link className="btn" to="/team">Meet the team</Link>

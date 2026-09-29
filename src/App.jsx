@@ -6,6 +6,8 @@ import Milestones from './pages/Milestones';
 import Docs from './pages/Docs';
 import { MinutesList, MinuteDetail } from './pages/Minutes';
 import Calendar from './pages/Calendar';
+import logoBlack from './content/logo_black_kinetiq.png';
+import logoWhite from './content/logo_white_kinetiq.png';
 
 const pages = [
   { path: '/', label: 'Home', end: true },
@@ -72,7 +74,8 @@ function TopNav() {
     <>
       <header className="top">
         <NavLink to="/" className="logo" onClick={() => setMenuOpen(false)}>
-          KINET<span>IQ</span>
+          <img src={logoBlack} alt="KinetiQ" className="nav-logo nav-logo-light" />
+          <img src={logoWhite} alt="KinetiQ" className="nav-logo nav-logo-dark" />
         </NavLink>
 
         <div className="header-nav-group">
