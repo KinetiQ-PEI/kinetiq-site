@@ -138,37 +138,172 @@ export const nearTermEvents = {
   "2026-12-08": [{ label: "Holiday", type: "seminar" }],
   "2026-12-15": [{ label: "MS4 window opens", type: "deadline" }],
   "2026-12-16": [{ label: "MS4: MVP deadline", type: "deadline" }],
+  "2026-12-23": [{ label: "Christmas break begins", type: "seminar" }],
+
+  // 2027 — second semester
+  "2027-01-01": [{ label: "New Year's Day", type: "seminar" }],
+  "2027-02-09": [{ label: "Exam period ends", type: "seminar" }],
+  "2027-02-10": [{ label: "Extensible API & ML work begins", type: "meeting" }],
+  "2027-02-23": [{ label: "Extensible API & ML sprint ends", type: "meeting" }],
+  "2027-02-24": [{ label: "Operator dashboard sprint begins", type: "meeting" }],
+  "2027-03-09": [{ label: "Operator dashboard sprint ends", type: "meeting" }],
+  "2027-03-10": [{ label: "BI reporting module sprint begins", type: "meeting" }],
+  "2027-03-23": [{ label: "BI reporting module sprint ends", type: "meeting" }],
+  "2027-03-24": [{ label: "Easter holidays begin", type: "seminar" }],
+  "2027-04-02": [{ label: "Easter holidays end", type: "seminar" }],
+  "2027-04-05": [{ label: "Advanced analytics sprint begins", type: "meeting" }],
+  "2027-04-18": [{ label: "Advanced analytics sprint ends", type: "meeting" }],
+  "2027-04-19": [{ label: "Integration & bug fixing sprint begins", type: "meeting" }],
+  "2027-04-25": [{ label: "Integration & bug fixing sprint ends", type: "meeting" }],
+  "2027-04-26": [{ label: "Academic week", type: "seminar" }],
+  "2027-04-30": [{ label: "Academic week ends", type: "seminar" }],
+  "2027-05-03": [{ label: "User testing begins", type: "meeting" }],
+  "2027-05-16": [{ label: "User testing ends", type: "meeting" }],
+  "2027-05-17": [{ label: "Data collection & stabilisation begins", type: "meeting" }],
+  "2027-05-30": [{ label: "Product stabilised", type: "meeting" }],
+  "2027-05-31": [{ label: "Documentation & report sprint begins", type: "meeting" }],
+  "2027-06-03": [{ label: "Final report deadline", type: "deadline" }],
+  "2027-06-04": [{ label: "STUDENTS@DETI — demo & defence", type: "deadline" }],
 };
+
 
 // Full lifecycle roadmap, from the team's own plan (Inception -> Transition)
 export const roadmap = [
   {
     phase: "Inception", items: [
-      { when: "15 Sep 2026 (week 1)", block: "Course kick-off", text: "Presentation of the course and the project proposals." },
-      { when: "22 Sep 2026 (week 2)", block: "Team & setup", text: "Team confirmed on the mariaBike project. Initial Git and Jira setup." },
-      { when: "29 Sep 2026 (week 3)", block: "Milestone 1", text: "Lifecycle objectives, calendar, site structure and presentation." },
-      { when: "6 to 20 Oct 2026", block: "Analysis & requirements", text: "Market study and audit of the mariaBike platform." },
-    ]
+      {
+        when: "22–29 Sep 2026",
+        block: "Setup & kick-off",
+        text: "Project website and visual identity, GitHub organisation, Jira project setup, project calendar and planning, state-of-the-art and MariaBike platform audit, and preparation of the MS1 presentation.",
+      },
+      {
+        when: "29 Sep 2026 · MS1",
+        block: "Milestone 1 — Lifecycle objectives",
+        text: "Official course milestone: presentation of lifecycle objectives, calendar and project plan.",
+      },
+    ],
   },
   {
     phase: "Elaboration", items: [
-      { when: "13 to 27 Oct 2026", block: "System architecture", text: "Event-driven architecture design (Kafka/MQTT) and telemetry schemas. Clarify ESP32 questions with the advisors." },
-      { when: "Around 13 Nov 2026 (week 9)", block: "Milestone 2", text: "Presentation and technical validation of the architecture with the advisors." },
-      { when: "Weeks 9 to 13", block: "Prototyping & CI/CD", text: "Initial real-time ingestion pipeline. CI/CD set up from the start." },
-    ]
+      {
+        when: "30 Sep – 6 Oct 2026",
+        block: "Requirements & actors",
+        text: "Requirements gathering and scope definition, actors, personas and use cases, and initial event-driven architecture design.",
+      },
+      {
+        when: "7–13 Oct 2026",
+        block: "Architecture design",
+        text: "Event-driven architecture detailed design, Kafka/MQTT setup, non-functional requirements documentation, and preparation of the lifecycle architecture presentation.",
+      },
+      {
+        when: "13–20 Oct 2026 · MS2",
+        block: "Milestone 2 — Lifecycle architecture",
+        text: "Official course milestone: presentation and technical validation of the architecture with the advisors.",
+      },
+    ],
   },
   {
     phase: "Construction", items: [
-      { when: "Jan - Feb 2027", block: "Fleet management", text: "Bike lifecycle, registration, status and fleet metrics APIs. Cross code review and refactor between teammates." },
-      { when: "Mar - Apr 2027", block: "Service layer", text: "Chosen modules (e.g. CO2 estimate, usage analytics / demand forecasting) and an extensible API framework." },
-      { when: "1 May 2027", block: "Dashboard & BI/ML", text: "Operator dashboard, BI and Machine Learning module integration, MVP check point." },
-    ]
+      {
+        when: "14–20 Oct 2026",
+        block: "UI concepts",
+        text: "Initial mockups and dashboard UI concepts, and definition of main user flows for fleet operators.",
+      },
+      {
+        when: "21 Oct – 3 Nov 2026",
+        block: "Prototype & telemetry validation",
+        text: "Interactive prototype and design system. Validation of the telemetry data ingestion pipeline.",
+      },
+      {
+        when: "3–10 Nov 2026 · MS3",
+        block: "Milestone 3 — Accessibility & usability",
+        text: "Official course milestone: accessibility and usability evaluation of the system.",
+      },
+      {
+        when: "4–24 Nov 2026",
+        block: "Core backbone & MVP build",
+        text: "Real-time telemetry ingestion pipeline, event store and database setup, individual bike registration and lifecycle state management, and aggregated fleet metrics API.",
+      },
+      {
+        when: "25 Nov – 15 Dec 2026",
+        block: "MVP completion & integration",
+        text: "CO₂ footprint tracking module, usage and rider analytics module, integration and end-to-end testing, and preparation of the MVP presentation.",
+      },
+      {
+        when: "15–16 Dec 2026 · MS4",
+        block: "Milestone 4 — MVP",
+        text: "Official course milestone: MVP demonstrated to supervisors, with peer evaluation.",
+      },
+      {
+        when: "16–22 Dec 2026",
+        block: "Stabilisation & planning",
+        text: "MVP stabilisation, review of first semester, and second-semester planning.",
+      },
+      {
+        when: "23 Dec – 9 Feb 2027",
+        block: "Christmas break & exam period",
+        text: "Development suspension.",
+      },
+      {
+        when: "10–23 Feb 2027",
+        block: "Extensible API & ML integration",
+        text: "Extensible API framework and ML module integration: demand forecasting and/or anomaly detection.",
+      },
+      {
+        when: "24 Feb – 9 Mar 2027",
+        block: "Operator backoffice dashboard",
+        text: "Operator backoffice dashboard UI: telemetry monitoring and service KPIs.",
+      },
+      {
+        when: "10–23 Mar 2027",
+        block: "BI reporting module",
+        text: "Integration of the BI reporting module.",
+      },
+      {
+        when: "24 Mar – 2 Apr 2027",
+        block: "Easter holidays",
+        text: "Development suspension.",
+      },
+      {
+        when: "5–18 Apr 2027",
+        block: "Advanced analytics & ML refinement",
+        text: "Advanced analytics and refinement of ML models.",
+      },
+      {
+        when: "19–25 Apr 2027",
+        block: "Integration & bug fixing",
+        text: "Full integration pass, testing and bug fixing.",
+      },
+      {
+        when: "26–30 Apr 2027",
+        block: "Academic week",
+        text: "Development suspension.",
+      },
+    ],
   },
   {
     phase: "Transition", items: [
-      { when: "Late May - Jun 2027", block: "Testing & validation", text: "Load, latency and scalability testing under realistic fleet conditions. Strong passwords on the VMs." },
-      { when: "1 Jun 2027", block: "Release / defence", text: "Final code delivery, final report and public defence presentation." },
-    ]
+      {
+        when: "3–16 May 2027",
+        block: "User testing & improvements",
+        text: "User testing sessions and application of improvements based on feedback.",
+      },
+      {
+        when: "17–30 May 2027",
+        block: "Data collection & stabilisation",
+        text: "Final data collection, evaluation and stabilisation of the product.",
+      },
+      {
+        when: "31 May – 3 Jun 2027",
+        block: "Documentation & report",
+        text: "Technical documentation and final technical report. Preparation of the final presentation and defence.",
+      },
+      {
+        when: "4 Jun 2027",
+        block: "STUDENTS@DETI",
+        text: "Public demo, poster, video and final technical report delivery.",
+      },
+    ],
   },
 ];
 
