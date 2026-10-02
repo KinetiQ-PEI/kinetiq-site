@@ -88,7 +88,7 @@ export const milestones = [
     label: "29 Sep 2026",
     text: "Presentation of the lifecycle objectives and the project calendar.",
     deliverable: "Project presentation, calendar and communication plan",
-    deliverableLink: null,
+    deliverableLink: "https://canva.link/e717fmo77xzgope",
   },
   {
     id: "MS2",
@@ -125,7 +125,10 @@ export const milestones = [
 export const nearTermEvents = {
   "2026-09-15": [{ label: "Course kick-off", type: "meeting" }],
   "2026-09-22": [{ label: "Teams & project confirmed", type: "meeting" }],
-  "2026-09-29": [{ label: "MS1: lifecycle objectives", type: "deadline" }],
+  "2026-09-29": [
+    { label: "MS1: lifecycle objectives", type: "deadline" },
+    { label: "Tech stack sync", type: "meeting" },
+  ],
   "2026-10-06": [{ label: "Seminar", type: "seminar" }],
   "2026-10-13": [{ label: "MS2 window opens", type: "deadline" }],
   "2026-10-20": [{ label: "MS2 deadline", type: "deadline" }],
@@ -312,7 +315,7 @@ export const roadmap = [
 // ---------------------------------------------------------------------------
 
 export const commPlan = [
-  { meeting: "Weekly meeting with the advisor", when: "Thursdays, 16:00", who: "Team and advisor" },
+  { meeting: "Advisor sync slot", when: "Thursdays, 16:00 (as needed / on request)", who: "Team and advisor" },
   { meeting: "Weekly team meeting", when: "Tuesdays, after the PEI class", who: "Team" },
   { meeting: "Presentation briefing", when: "Mondays before each presentation", who: "Team" },
 ];

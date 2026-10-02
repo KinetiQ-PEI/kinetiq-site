@@ -3,19 +3,6 @@ import { nearTermEvents as EVENTS, roadmap as ROADMAP } from '../data/site.js';
 
 const PHASE_CLASS = { Inception: 'ph-inception', Elaboration: 'ph-elaboration', Construction: 'ph-construction', Transition: 'ph-transition' };
 
-function getThursdayMeetings(year, month) {
-  const meetings = {};
-  const d = new Date(year, month - 1, 1);
-  while (d.getMonth() === month - 1) {
-    if (d.getDay() === 4) {
-      const key = `${year}-${String(month).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
-      meetings[key] = [{ label: 'Advisor meeting', type: 'meeting' }];
-    }
-    d.setDate(d.getDate() + 1);
-  }
-  return meetings;
-}
-
 const MONTH_NAMES = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 const DAY_NAMES = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
 
@@ -40,10 +27,9 @@ export default function Calendar() {
   const next = () => { if (month === 12) { setYear((y) => y + 1); setMonth(1); } else setMonth((m) => m + 1); };
 
   const cells = buildGrid(year, month);
-  const recurringMeetings = getThursdayMeetings(year, month);
   const getEvents = (day) => {
     const key = `${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
-    return [...(recurringMeetings[key] || []), ...(EVENTS[key] || [])];
+    return EVENTS[key] || [];
   };
 
   return (
