@@ -73,7 +73,14 @@ function TopNav() {
   return (
     <>
       <header className="top">
-        <NavLink to="/" className="logo" onClick={() => setMenuOpen(false)}>
+        <NavLink
+          to="/"
+          className="logo"
+          onClick={() => {
+            setMenuOpen(false);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          }}
+        >
           <img src={logoBlack} alt="KinetiQ" className="nav-logo nav-logo-light" />
           <img src={logoWhite} alt="KinetiQ" className="nav-logo nav-logo-dark" />
         </NavLink>
@@ -86,7 +93,12 @@ function TopNav() {
                 to={p.path}
                 end={p.end}
                 className={({ isActive }) => isActive ? 'active' : ''}
-                onClick={() => setMenuOpen(false)}
+                onClick={() => {
+                  setMenuOpen(false);
+                  if (p.path === '/' && location.pathname === '/') {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                  }
+                }}
               >
                 {p.label}
               </NavLink>
@@ -130,6 +142,16 @@ function TopNav() {
   );
 }
 
+function ScrollToTop() {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+  }, [pathname]);
+
+  return null;
+}
+
 function AppFooter() {
   return (
     <footer>KINETIQ — Projeto em Engenharia Informática 2026/2027, University of Aveiro</footer>
@@ -139,6 +161,7 @@ function AppFooter() {
 function App() {
   return (
     <Router>
+      <ScrollToTop />
       <TopNav />
       <Routes>
         <Route path="/" element={<Home />} />
@@ -146,6 +169,7 @@ function App() {
         <Route path="/milestones" element={<Milestones />} />
         <Route path="/calendar" element={<Calendar />} />
         <Route path="/docs" element={<Docs />} />
+        <Route path="/documents" element={<Docs />} />
         <Route path="/minutes" element={<MinutesList />} />
         <Route path="/minutes/:slug" element={<MinuteDetail />} />
         <Route path="*" element={<Home />} />

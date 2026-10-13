@@ -87,10 +87,19 @@ function GoalCard({ num, text }) {
   );
 }
 
+// Check dynamically for any diagram files dropped into content/diagrams
+const diagramFiles = import.meta.glob('../content/diagrams/*.{png,jpg,jpeg,svg,pdf}', { eager: true, import: 'default' });
+const diagramList = Object.entries(diagramFiles).map(([path, mod]) => ({
+  name: path.split('/').pop(),
+  src: mod,
+  isPdf: path.endsWith('.pdf'),
+}));
+
 /* ── Main page ── */
 export default function Home() {
   const heroRef = useRef(null);
   const [blur, setBlur] = useState(0);
+  const [showArchModal, setShowArchModal] = useState(false);
 
   useEffect(() => {
     const onScroll = () => {
@@ -134,8 +143,31 @@ export default function Home() {
       </div>
 
       <div className="home-body">
-        <section>
-          <span className="section-label">How it works</span>
+        <section className="how-it-works-section">
+          <div className="how-it-works-header">
+            <div>
+              <span className="section-label">How it works</span>
+              <h2>End-to-end data pipeline</h2>
+              <p className="flow-desc">
+                Real-time sensor telemetry is collected via edge MQTT brokers and streamed into Apache Kafka.<br />
+                Extensible modules process events to power the operator back-office and mobile rider apps.
+              </p>
+            </div>
+            <button
+              type="button"
+              className="btn alt arch-trigger-btn"
+              onClick={() => setShowArchModal(true)}
+              aria-label="View system architecture"
+            >
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <rect x="3" y="3" width="7" height="7" />
+                <rect x="14" y="3" width="7" height="7" />
+                <rect x="14" y="14" width="7" height="7" />
+                <rect x="3" y="14" width="7" height="7" />
+              </svg>
+              View architecture
+            </button>
+          </div>
           <ol className="flow">{flow.map((f) => <li key={f}>{f}</li>)}</ol>
         </section>
 
@@ -147,6 +179,94 @@ export default function Home() {
           </ul>
         </section>
       </div>
+
+      {/* ── Architecture Modal ── */}
+      {showArchModal && (
+        <div className="modal-backdrop" onClick={() => setShowArchModal(false)}>
+          <div className="modal-card" onClick={(e) => e.stopPropagation()}>
+            <div className="modal-header">
+              <div>
+                <span className="section-label" style={{ marginBottom: '0.25rem' }}>Lifecycle architecture · MS2</span>
+                <h2 style={{ margin: 0, fontSize: '1.4rem' }}>KINETIQ Architecture</h2>
+              </div>
+              <button
+                type="button"
+                className="modal-close-btn"
+                onClick={() => setShowArchModal(false)}
+                aria-label="Close modal"
+              >
+                ✕
+              </button>
+            </div>
+
+            <div className="modal-body">
+              {diagramList.length > 0 ? (
+                <div className="arch-diagram-gallery">
+                  {diagramList.map((d) => (
+                    <div key={d.name} className="arch-diagram-item">
+                      {d.isPdf ? (
+                        <div className="arch-pdf-preview">
+                          <p>Architecture document: <strong>{d.name}</strong></p>
+                          <a href={d.src} target="_blank" rel="noreferrer" className="btn primary sm">
+                            Open PDF ↗
+                          </a>
+                        </div>
+                      ) : (
+                        <img src={d.src} alt="KINETIQ System Architecture" className="arch-img" />
+                      )}
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <div className="arch-preview-card">
+                  <div className="arch-diagram-blueprint">
+                    <div className="arch-node sources">
+                      <span className="arch-node-tag">SOURCES</span>
+                      <strong>ESP32 Sensors & Simulators</strong>
+                      <span className="arch-node-sub">Publish telemetry over MQTT</span>
+                    </div>
+                    <div className="arch-node ingestion">
+                      <span className="arch-node-tag">INGESTION</span>
+                      <strong>MQTT Broker & Kafka</strong>
+                      <span className="arch-node-sub">MQTT Source Connector feeds Apache Kafka, the event backbone</span>
+                    </div>
+                    <div className="arch-node realtime">
+                      <span className="arch-node-tag arch-tag-realtime">REAL-TIME PATH</span>
+                      <strong>Processing & Live Feed</strong>
+                      <span className="arch-node-sub">Telemetry Processing · WebSocket Service · InfluxDB sink</span>
+                    </div>
+                    <div className="arch-node operational">
+                      <span className="arch-node-tag arch-tag-operational">OPERATIONAL PATH</span>
+                      <strong>Core API & Fleet Management</strong>
+                      <span className="arch-node-sub">Spring Boot · ML and BI modules · Keycloak</span>
+                    </div>
+                    <div className="arch-node clients">
+                      <span className="arch-node-tag">CLIENTS</span>
+                      <strong>Web Back-office & Rider App</strong>
+                      <span className="arch-node-sub">React · Flutter, through the API Gateway</span>
+                    </div>
+                  </div>
+
+                  <div className="arch-strip">
+                    <span className="arch-strip-chip">Data layer: InfluxDB (time series) · PostgreSQL + PostGIS (fleet, zones)</span>
+                    <span className="arch-strip-chip">All services run in Docker containers</span>
+                  </div>
+                </div>
+              )}
+            </div>
+
+            <div className="modal-footer">
+              <Link to="/docs" className="btn alt sm" onClick={() => setShowArchModal(false)}>
+                View Documentation & Deliverables →
+              </Link>
+              <button type="button" className="btn sm" onClick={() => setShowArchModal(false)}>
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
     </main>
   );
 }

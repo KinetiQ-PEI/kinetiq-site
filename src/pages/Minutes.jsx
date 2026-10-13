@@ -20,16 +20,26 @@ export function MinutesList() {
           fill it in, commit — it appears here automatically, newest first.
         </p>
       </header>
+
       {minutes.length === 0 ? (
         <div className="empty">No minutes yet. The first weekly meeting will show up here.</div>
       ) : (
         <div className="card scroll">
           <table>
-            <thead><tr><th>Meeting</th><th>Title</th><th>Date</th><th /></tr></thead>
+            <thead>
+              <tr>
+                <th>Meeting</th>
+                <th>Milestone</th>
+                <th>Title</th>
+                <th>Date</th>
+                <th />
+              </tr>
+            </thead>
             <tbody>
               {minutes.map((m) => (
                 <tr key={m.slug}>
-                  <td>{pad(m.number)}</td>
+                  <td style={{ fontWeight: 600, fontFamily: 'Space Grotesk, monospace' }}>{pad(m.number)}</td>
+                  <td style={{ fontWeight: 600, color: 'var(--muted)', fontFamily: 'Space Grotesk, sans-serif' }}>{m.milestone || '—'}</td>
                   <td>{m.title}</td>
                   <td>{m.date && formatDate(m.date)}</td>
                   <td style={{ textAlign: 'right' }}><Link to={`/minutes/${m.slug}`}>View →</Link></td>
@@ -61,7 +71,7 @@ export function MinuteDetail() {
   return (
     <main>
       <header className="pagehead">
-        <p className="tag">Meeting {pad(minute.number)}</p>
+        <p className="tag">Meeting {pad(minute.number)}{minute.milestone ? ` · ${minute.milestone}` : ''}</p>
         <h1>{minute.title}</h1>
         <p>{minute.date && formatDate(minute.date)}{details && ` · ${details}`}</p>
       </header>

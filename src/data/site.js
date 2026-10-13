@@ -34,18 +34,25 @@ export const links = {
 // ---------------------------------------------------------------------------
 
 export const overview = {
-  context: "mariaBike is a micromobility platform that already produces a continuous stream of data from embedded sensors, smartwatch connectivity, mobile interfaces and cloud telemetry. KINETIQ uses mariaBike as its first deployment target.",
-  problem: "Existing fleet management platforms are designed for cars, trucks and large vehicle fleets. For micromobility — eBikes, scooters and light electric vehicles — available solutions stop at basic GPS tracking and battery monitoring, with no integrated approach to lifecycle management, usage analytics or extensible data services.",
-  expectedResults: "A deployed event-driven back office initially integrated with mariaBike, a service layer with CO₂ footprint and usage analytics modules, an operator dashboard, and an evaluation of extensibility, latency and scalability.",
+  context: "KINETIQ is a platform to monitor and manage corporate micromobility fleets, and it also serves personal vehicle owners. mariaBike already produces a continuous stream of data from embedded sensors, smartwatch connectivity, mobile interfaces and cloud telemetry, and is KINETIQ's first deployment target.",
+  problem: "Existing micromobility platforms cover telemetry, analytics and lifecycle management, but none of the products we analysed combines all of these capabilities with a rider app, CO₂ footprint tracking and an open, extensible API, and none offers ML-based anomaly detection.",
+  expectedResults: "A deployed event-driven platform (MQTT and Kafka) integrated with mariaBike, a web back-office for operators and a mobile app for riders, value-added modules (CO₂ estimate, BI reports and ML anomaly detection), and an evaluation of extensibility, latency and scalability.",
 };
 
-export const flow = ["Vehicle sensors", "Event broker", "Fleet management", "Services and APIs", "Dashboard"];
+export const flow = [
+  "Vehicle sensors",
+  "MQTT broker",
+  "Kafka",
+  "Telemetry processing",
+  "Fleet management and modules",
+  "Web and mobile apps",
+];
 
 export const goals = [
-  "Ingest real-time telemetry with an event-driven architecture (Kafka or MQTT), initially from the mariaBike fleet.",
+  "Ingest real-time telemetry with an event-driven architecture, using MQTT at the edge and Apache Kafka as the event backbone, initially from the mariaBike fleet.",
   "Manage each bike's lifecycle (registration, maintenance, usage history) and aggregated fleet metrics.",
-  "Expose extensible APIs for value-added services, with at least two concrete implementations.",
-  "Deliver a back-office dashboard for operators to monitor telemetry, lifecycle and service KPIs.",
+  "Expose extensible APIs through an API Gateway and a Core API, so value-added modules can be plugged in through Kafka.",
+  "Deliver a web back-office for fleet operators, technicians and analysts, and a mobile app for riders.",
   "Validate extensibility with one BI reporting module and one Machine Learning module.",
 ];
 

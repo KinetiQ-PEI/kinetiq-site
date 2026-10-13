@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { overview, goals, modules, commPlan, resources, roles } from '../data/site.js';
+import { overview, goals, modules, commPlan, resources } from '../data/site.js';
 import proposalPdf from '../content/documentation/2027PEI_MariaBike_Proposal.pdf';
 import ms1Pdf from '../content/presentations/ms1.pdf';
 
@@ -18,11 +18,12 @@ export default function Docs() {
     <main className="docs-main">
       <header className="pagehead">
         <h1>Documentation</h1>
-        <p>Project overview, documents, plans, roles, tasks and deliverables in one place.</p>
+        <p>Project overview, specifications, deliverables, communication plan and resources in one place.</p>
       </header>
 
-      <SectionCard title="Project documents" icon="📁">
+      <SectionCard title="Project documents & deliverables" icon="📁">
         <div className="doc-file-list">
+          {/* Document 1: Proposal */}
           <div className="doc-file-card">
             <div className="doc-file-info">
               <div className="doc-file-icon">
@@ -55,6 +56,7 @@ export default function Docs() {
             </div>
           </div>
 
+          {/* Document 2: MS1 Presentation */}
           <div className="doc-file-card">
             <div className="doc-file-info">
               <div className="doc-file-icon" style={{ background: 'color-mix(in srgb, #3b82f6 12%, transparent)', color: '#3b82f6' }}>
@@ -65,13 +67,13 @@ export default function Docs() {
                 </svg>
               </div>
               <div className="doc-file-meta">
-                <div className="doc-file-title">Milestone 1 Presentation</div>
-                <div className="doc-file-desc">Lifecycle objectives, project schedule, communication plan and state of the art.</div>
+                <div className="doc-file-title">Milestone 1 Presentation — Lifecycle Objectives</div>
+                <div className="doc-file-desc">Lifecycle objectives, project schedule, communication plan, state of the art and deliverables.</div>
                 <div className="doc-file-tags">
                   <span className="doc-file-tag available">Available</span>
                   <span className="doc-file-tag">PDF</span>
                   <span className="doc-file-tag">9.0 MB</span>
-                  <span className="doc-file-tag">Inception</span>
+                  <span className="doc-file-tag">Inception · MS1</span>
                   <span className="doc-file-tag">Canva</span>
                 </div>
               </div>
@@ -86,6 +88,112 @@ export default function Docs() {
               <a href="https://canva.link/e717fmo77xzgope" target="_blank" rel="noreferrer" className="doc-btn">
                 Canva Slides ↗
               </a>
+            </div>
+          </div>
+
+          {/* Document 3: MS2 Architecture */}
+          <div className="doc-file-card">
+            <div className="doc-file-info">
+              <div className="doc-file-icon" style={{ background: 'color-mix(in srgb, #7c3aed 12%, transparent)', color: '#7c3aed' }}>
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <rect x="3" y="3" width="7" height="7" />
+                  <rect x="14" y="3" width="7" height="7" />
+                  <rect x="14" y="14" width="7" height="7" />
+                  <rect x="3" y="14" width="7" height="7" />
+                </svg>
+              </div>
+              <div className="doc-file-meta">
+                <div className="doc-file-title">Milestone 2 — Lifecycle Architecture & Diagrams</div>
+                <div className="doc-file-desc">Event-driven architecture specification, Kafka/MQTT pipeline, InfluxDB telemetry and component integration.</div>
+                <div className="doc-file-tags">
+                  <span className="doc-file-tag" style={{ background: 'color-mix(in srgb, #7c3aed 15%, transparent)', color: '#7c3aed', borderColor: 'color-mix(in srgb, #7c3aed 30%, transparent)' }}>In Elaboration</span>
+                  <span className="doc-file-tag">Elaboration · MS2</span>
+                  <span className="doc-file-tag">13–20 Oct 2026</span>
+                </div>
+              </div>
+            </div>
+            <div className="doc-file-actions">
+              <Link to="/" className="doc-btn primary">
+                View Architecture Flow
+              </Link>
+            </div>
+          </div>
+
+          {/* Document 4: MS3 Accessibility & Usability */}
+          <div className="doc-file-card">
+            <div className="doc-file-info">
+              <div className="doc-file-icon" style={{ background: 'color-mix(in srgb, var(--amber) 12%, transparent)', color: 'var(--amber)' }}>
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <circle cx="12" cy="12" r="10" />
+                  <path d="M12 8v8" />
+                  <path d="M8 12h8" />
+                </svg>
+              </div>
+              <div className="doc-file-meta">
+                <div className="doc-file-title">Milestone 3 — Accessibility & Usability Evaluation</div>
+                <div className="doc-file-desc">Usability testing protocol, WCAG accessibility audit, design system and evaluation report.</div>
+                <div className="doc-file-tags">
+                  <span className="doc-file-tag">Upcoming</span>
+                  <span className="doc-file-tag">Construction · MS3</span>
+                  <span className="doc-file-tag">3–10 Nov 2026</span>
+                </div>
+              </div>
+            </div>
+            <div className="doc-file-actions">
+              <Link to="/milestones" className="doc-btn">
+                Milestone Details →
+              </Link>
+            </div>
+          </div>
+
+          {/* Document 5: MS4 MVP Demonstration */}
+          <div className="doc-file-card">
+            <div className="doc-file-info">
+              <div className="doc-file-icon" style={{ background: 'color-mix(in srgb, var(--amber) 12%, transparent)', color: 'var(--amber)' }}>
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <polygon points="5 3 19 12 5 21 5 3" />
+                </svg>
+              </div>
+              <div className="doc-file-meta">
+                <div className="doc-file-title">Milestone 4 — MVP Demonstration & Evaluation</div>
+                <div className="doc-file-desc">Working telemetry prototype demonstrated to course supervisors, with peer evaluation report.</div>
+                <div className="doc-file-tags">
+                  <span className="doc-file-tag">Upcoming</span>
+                  <span className="doc-file-tag">Construction · MS4</span>
+                  <span className="doc-file-tag">15–16 Dec 2026</span>
+                </div>
+              </div>
+            </div>
+            <div className="doc-file-actions">
+              <Link to="/milestones" className="doc-btn">
+                Milestone Details →
+              </Link>
+            </div>
+          </div>
+
+          {/* Document 6: Final Report */}
+          <div className="doc-file-card">
+            <div className="doc-file-info">
+              <div className="doc-file-icon" style={{ background: 'color-mix(in srgb, var(--green) 12%, transparent)', color: 'var(--green)' }}>
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
+                  <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
+                </svg>
+              </div>
+              <div className="doc-file-meta">
+                <div className="doc-file-title">Final Technical Report & STUDENTS@DETI Defence</div>
+                <div className="doc-file-desc">Comprehensive project report, poster, demonstration video and public defence.</div>
+                <div className="doc-file-tags">
+                  <span className="doc-file-tag">Upcoming</span>
+                  <span className="doc-file-tag">Transition</span>
+                  <span className="doc-file-tag">4 Jun 2027</span>
+                </div>
+              </div>
+            </div>
+            <div className="doc-file-actions">
+              <Link to="/calendar" className="doc-btn">
+                Roadmap Schedule →
+              </Link>
             </div>
           </div>
         </div>
@@ -125,23 +233,6 @@ export default function Docs() {
           ))}
         </div>
       </SectionCard>
-
-      <SectionCard title="Ongoing roles" icon="👤">
-        <div className="role-list">
-          {roles.map((r) => (
-            <div className="role-pill" key={r.member}>
-              <div className="role-pill-avatar">{r.member[0]}</div>
-              <div className="role-pill-body">
-                <span className="role-pill-name">{r.member}</span>
-                <span className="role-pill-role">{r.role}</span>
-                <span className="role-pill-act">{r.activities}</span>
-              </div>
-            </div>
-          ))}
-        </div>
-      </SectionCard>
-
-
     </main>
   );
 }

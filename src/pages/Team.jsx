@@ -46,7 +46,8 @@ function MemberCard({ member }) {
     <article className="member">
       <div className="ph">{!isPlaceholder(member.photo) ? <img src={member.photo} alt={member.name} /> : member.name[0]}</div>
       <h3>{member.name}</h3>
-      <span className="tag">Student</span>
+      <span className="tag member-role-badge">MAIN ROLE: TBD</span>
+      <div style={{ color: 'var(--muted)', fontSize: '0.85rem', marginBottom: '0.75rem', fontWeight: 500 }}>Student</div>
       <div className="member-links">
         <MemberLink href={gh} title="GitHub"><IconGitHub /></MemberLink>
         <MemberLink href={li} title="LinkedIn"><IconLinkedIn /></MemberLink>
@@ -61,8 +62,15 @@ export default function Team() {
     <main>
       <header className="pagehead">
         <h1>The Team</h1>
+        <p>The student team, project advisors and external partners behind KINETIQ.</p>
       </header>
-      <div className="team">{team.map((m) => <MemberCard key={m.name} member={m} />)}</div>
+
+      <div className="team">
+        {team.map((m) => (
+          <MemberCard key={m.name} member={m} />
+        ))}
+      </div>
+
       <div className="cols">
         <div>
           <h2>Advisors</h2>

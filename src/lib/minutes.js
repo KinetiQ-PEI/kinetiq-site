@@ -20,16 +20,27 @@ function parseFrontMatter(raw) {
   return { data, body: raw.slice(match[0].length) };
 }
 
+function inferMilestone(date) {
+  if (!date) return 'MS1';
+  if (date <= '2026-09-29') return 'MS1';
+  if (date <= '2026-10-20') return 'MS2';
+  if (date <= '2026-11-10') return 'MS3';
+  if (date <= '2026-12-16') return 'MS4';
+  return 'MS4';
+}
+
 export const minutes = Object.entries(files)
   .map(([path, raw]) => ({ file: path.split("/").pop().replace(/\.md$/, ""), raw }))
   .filter(({ file }) => !file.startsWith("_"))
   .map(({ file, raw }) => {
     const { data, body } = parseFrontMatter(raw);
     const heading = /^#\s+(.+)$/m.exec(body)?.[1];
+    const date = data.date ?? "";
     return {
       slug: file,
       number: Number(data.number) || Number(/\d+/.exec(file)?.[0]) || 0,
-      date: data.date ?? "",
+      milestone: data.milestone ? String(data.milestone).trim().toUpperCase() : inferMilestone(date),
+      date,
       title: data.title ?? heading ?? file,
       location: data.location ?? "",
       time: data.time ?? "",
