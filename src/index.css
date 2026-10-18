@@ -2281,6 +2281,67 @@ td a {
   display: block;
 }
 
+.arch-img-zoomable {
+  cursor: zoom-in;
+}
+
+/* ── Fullscreen image zoom ── */
+.img-zoom-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1100;
+  background: rgba(8, 11, 20, 0.92);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  overflow: auto;
+  cursor: zoom-out;
+  animation: modalFadeIn 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.img-zoom-img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  background: #fff;
+  border-radius: var(--radius-md);
+  cursor: zoom-in;
+}
+
+.img-zoom-overlay.actual {
+  display: block;
+}
+
+.img-zoom-overlay.actual .img-zoom-img {
+  max-width: none;
+  max-height: none;
+  cursor: zoom-out;
+}
+
+.img-zoom-close {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.6rem 1rem;
+  border: 2px solid #fff;
+  border-radius: 999px;
+  background: #0c111d;
+  color: #fff;
+  font-size: 0.95rem;
+  font-weight: 600;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+}
+
+.img-zoom-close:hover {
+  background: #1f2937;
+}
+
 /* ── Roadmap Accordion ── */
 .roadmap-header-row {
   display: flex;

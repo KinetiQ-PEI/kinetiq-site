@@ -100,6 +100,15 @@ export default function Home() {
   const heroRef = useRef(null);
   const [blur, setBlur] = useState(0);
   const [showArchModal, setShowArchModal] = useState(false);
+  const [zoomImg, setZoomImg] = useState(null);
+  const [zoomActual, setZoomActual] = useState(false);
+
+  useEffect(() => {
+    if (!zoomImg) return;
+    const onKey = (e) => { if (e.key === 'Escape') setZoomImg(null); };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [zoomImg]);
 
   useEffect(() => {
     const onScroll = () => {
@@ -212,7 +221,13 @@ export default function Home() {
                           </a>
                         </div>
                       ) : (
-                        <img src={d.src} alt="KINETIQ System Architecture" className="arch-img" />
+                        <img
+                          src={d.src}
+                          alt="KINETIQ System Architecture"
+                          className="arch-img arch-img-zoomable"
+                          title="Click to enlarge"
+                          onClick={() => { setZoomActual(false); setZoomImg(d.src); }}
+                        />
                       )}
                     </div>
                   ))}
@@ -264,6 +279,27 @@ export default function Home() {
               </button>
             </div>
           </div>
+        </div>
+      )}
+
+      {/* ── Fullscreen image zoom ── */}
+      {zoomImg && (
+        <div className={`img-zoom-overlay${zoomActual ? ' actual' : ''}`} onClick={() => setZoomImg(null)}>
+          <button
+            type="button"
+            className="img-zoom-close"
+            onClick={() => setZoomImg(null)}
+            aria-label="Close zoom"
+          >
+            ✕ Close
+          </button>
+          <img
+            src={zoomImg}
+            alt="KINETIQ System Architecture (enlarged)"
+            className="img-zoom-img"
+            title={zoomActual ? 'Click to fit screen' : 'Click for full size'}
+            onClick={(e) => { e.stopPropagation(); setZoomActual((v) => !v); }}
+          />
         </div>
       )}
 
