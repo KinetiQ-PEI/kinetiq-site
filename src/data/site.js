@@ -57,11 +57,11 @@ export const goals = [
 ];
 
 export const modules = [
-  { name: "Event backbone", tasks: "Broker setup, telemetry ingestion, event schemas", icon: "⚡" },
-  { name: "Fleet management", tasks: "Bike lifecycle, usage history, fleet metrics API", icon: "🚲" },
-  { name: "Service layer", tasks: "Extensible APIs, CO₂ footprint, usage analytics", icon: "🔌" },
-  { name: "Dashboard", tasks: "Telemetry monitoring, lifecycle management, service KPIs", icon: "📊" },
-  { name: "BI and ML", tasks: "BI report module, anomaly detection or demand forecasting", icon: "🤖" },
+  { name: "Event backbone", tasks: "Broker setup, telemetry ingestion, event schemas" },
+  { name: "Fleet management", tasks: "Bike lifecycle, usage history, fleet metrics API" },
+  { name: "Service layer", tasks: "Extensible APIs, CO₂ footprint, usage analytics" },
+  { name: "Dashboard", tasks: "Telemetry monitoring, lifecycle management, service KPIs" },
+  { name: "BI and ML", tasks: "BI report module, anomaly detection or demand forecasting" },
 ];
 
 // ---------------------------------------------------------------------------
@@ -95,7 +95,6 @@ export const milestones = [
     label: "29 Sep 2026",
     text: "Presentation of the lifecycle objectives and the project calendar.",
     deliverable: "Project presentation, calendar and communication plan",
-    deliverableLink: "https://canva.link/e717fmo77xzgope",
   },
   {
     id: "MS2",
@@ -104,18 +103,16 @@ export const milestones = [
     dates: ["2026-10-13", "2026-10-20"],
     label: "13 to 20 Oct 2026",
     text: "Presentation of the architecture; achieved once the architecture is validated.",
-    deliverable: "Architecture presentation and validation",
-    deliverableLink: null,
+    deliverable: "Architecture presentation, requirements and UI integration points",
   },
   {
     id: "MS3",
-    title: "Accessibility and usability",
+    title: "Legal requirements, technical risks and digital accessibility",
     phase: "Construction",
     dates: ["2026-11-03", "2026-11-10"],
     label: "3 to 10 Nov 2026",
-    text: "Digital accessibility and usability of the system.",
-    deliverable: "Accessibility and usability evaluation",
-    deliverableLink: null,
+    text: "GDPR and licensing requirements, technical risk analysis, and a WCAG 2.2 AA accessibility matrix of the main screens.",
+    deliverable: "Legal, risk and accessibility analysis",
   },
   {
     id: "MS4",
@@ -125,7 +122,6 @@ export const milestones = [
     label: "15 to 16 Dec 2026",
     text: "MVP presented to the supervisors, with peer evaluation.",
     deliverable: "MVP demonstration and presentation",
-    deliverableLink: null,
   },
 ];
 
@@ -177,6 +173,15 @@ export const nearTermEvents = {
 };
 
 
+// Start date of each project phase. The Calendar marks the phase that contains
+// today as "Current Phase" and the earlier ones as "Completed".
+export const phases = [
+  { name: "Inception", start: "2026-09-15" },
+  { name: "Elaboration", start: "2026-09-30" },
+  { name: "Construction", start: "2026-10-21" },
+  { name: "Transition", start: "2027-05-03" },
+];
+
 // Full lifecycle roadmap, from the team's own plan (Inception -> Transition)
 export const roadmap = [
   {
@@ -226,8 +231,8 @@ export const roadmap = [
       },
       {
         when: "3–10 Nov 2026 · MS3",
-        block: "Milestone 3 — Accessibility & usability",
-        text: "Official course milestone: accessibility and usability evaluation of the system.",
+        block: "Milestone 3 — Legal, risks & accessibility",
+        text: "GDPR and licensing requirements, technical risk analysis, and a WCAG 2.2 AA accessibility matrix of the main screens.",
       },
       {
         when: "4–24 Nov 2026",
@@ -320,6 +325,199 @@ export const roadmap = [
 // ---------------------------------------------------------------------------
 // Documentation page
 // ---------------------------------------------------------------------------
+
+// Groups shown on the Documentation page, in order. `id` matches a document's
+// `milestone` and is used (lower-cased) as the anchor, e.g. /docs?ms=ms2.
+export const documentGroups = [
+  {
+    id: "MS1",
+    label: "Lifecycle objectives",
+    phase: "Inception",
+    dates: "29 Sep 2026",
+    status: "delivered",
+  },
+  {
+    id: "MS2",
+    label: "Lifecycle architecture",
+    phase: "Elaboration",
+    dates: "13–20 Oct 2026",
+    status: "delivered",
+    note: "The architecture diagram was revised on 31 Oct 2026, after the presentation (the Reverse Proxy now sits between the frontend and the API Gateway). The current version is the Architecture Diagram below.",
+  },
+  {
+    id: "MS3",
+    label: "Legal requirements, technical risks and digital accessibility",
+    phase: "Construction",
+    dates: "3–10 Nov 2026",
+    status: "upcoming",
+  },
+  {
+    id: "MS4",
+    label: "MVP",
+    phase: "Construction",
+    dates: "15–16 Dec 2026",
+    status: "upcoming",
+  },
+  {
+    id: "FINAL",
+    label: "Final report & STUDENTS@DETI",
+    phase: "Transition",
+    dates: "4 Jun 2027",
+    status: "upcoming",
+  },
+];
+
+// Every document listed on the site. `file` is relative to src/content
+// (null while there is no file yet). status: "available" | "in-revision" | "upcoming".
+export const documents = [
+  // MS1
+  {
+    id: "proposal",
+    milestone: "MS1",
+    title: "Project Proposal",
+    description: "Official PEI 2026/2027 project brief, the mariaBike use case that originated KinetiQ.",
+    file: "documentation/2027PEI_MariaBike_Proposal.pdf",
+    downloadName: "2027PEI_MariaBike_Proposal.pdf",
+    type: "PDF",
+    size: "77 KB",
+    pages: 2,
+    status: "available",
+  },
+  {
+    id: "ms1-presentation",
+    milestone: "MS1",
+    title: "MS1 Presentation",
+    description: "Lifecycle objectives, project schedule, communication plan, state of the art and deliverables.",
+    file: "ms1/presentation.pdf",
+    downloadName: "KinetiQ_MS1_Presentation.pdf",
+    type: "PDF",
+    size: "9.0 MB",
+    pages: 17,
+    status: "available",
+    links: [{ label: "Canva", href: "https://canva.link/e717fmo77xzgope" }],
+  },
+
+  // MS2
+  {
+    id: "ms2-presentation",
+    milestone: "MS2",
+    title: "MS2 Presentation",
+    description: "State of the art, actors and use cases, requirements, event-driven architecture, domain model, telemetry flows and calendar.",
+    file: "ms2/presentation.pdf",
+    downloadName: "KinetiQ_MS2_Presentation.pdf",
+    type: "PDF",
+    size: "13.4 MB",
+    pages: 34,
+    status: "available",
+    links: [{ label: "Canva", href: "[https://canva.link/deemwp1k1k3v41q]" }],
+  },
+  {
+    id: "functional-requirements",
+    milestone: "MS2",
+    title: "Functional Requirements",
+    description: "FR01–FR26 grouped by package: telemetry, fleet lifecycle, alerts, analytics, back-office, rider app and access control.",
+    file: "ms2/functional-requirements.pdf",
+    downloadName: "KinetiQ_MS2_Functional_Requirements.pdf",
+    type: "PDF",
+    size: "95 KB",
+    pages: 3,
+    status: "available",
+  },
+  {
+    id: "non-functional-requirements",
+    milestone: "MS2",
+    title: "Non-Functional Requirements",
+    description: "NFR01–NFR24: usability and accessibility, interface constraints, performance, scalability, security and maintainability.",
+    file: "ms2/non-functional-requirements.pdf",
+    downloadName: "KinetiQ_MS2_Non_Functional_Requirements.pdf",
+    type: "PDF",
+    size: "76 KB",
+    pages: 3,
+    status: "available",
+  },
+  {
+    id: "ui-integration-points",
+    milestone: "MS2",
+    title: "UI Integration Points",
+    description: "How the React and Flutter apps reach the backend through the Reverse Proxy and API Gateway (HTTPS and WSS), per actor.",
+    file: "ms2/ui-integration-points.pdf",
+    downloadName: "KinetiQ_MS2_UI_Integration_Points.pdf",
+    type: "PDF",
+    size: "52 KB",
+    pages: 2,
+    status: "available",
+  },
+  {
+    id: "architecture-diagram",
+    milestone: "MS2",
+    title: "Architecture Diagram",
+    description: "Final event-driven architecture: MQTT edge, Kafka backbone, real-time and operational paths, data layer (rev. 31 Oct 2026).",
+    file: "diagrams/architecture.png",
+    downloadName: "KinetiQ_Architecture_Diagram.png",
+    type: "PNG",
+    size: "5.2 MB",
+    pages: null,
+    status: "available",
+  },
+  {
+    id: "actors-use-cases",
+    milestone: "MS2",
+    title: "Actors, Personas & Use Cases",
+    description: "Fleet Operator, Maintenance Technician, Fleet Analyst and Rider, with personas and use cases.",
+    file: null,
+    downloadName: null,
+    type: "PDF",
+    size: null,
+    pages: null,
+    status: "in-revision",
+  },
+
+  // MS3
+  {
+    id: "legal-requirements",
+    milestone: "MS3",
+    title: "Legal Requirements (GDPR & Licensing)",
+    file: null,
+    type: null,
+    status: "upcoming",
+  },
+  {
+    id: "technical-risks",
+    milestone: "MS3",
+    title: "Technical Risks",
+    file: null,
+    type: null,
+    status: "upcoming",
+  },
+  {
+    id: "accessibility-matrix",
+    milestone: "MS3",
+    title: "Digital Accessibility Matrix (WCAG 2.2 AA)",
+    file: null,
+    type: null,
+    status: "upcoming",
+  },
+
+  // MS4
+  {
+    id: "mvp-demo",
+    milestone: "MS4",
+    title: "MVP Demonstration & Peer Evaluation",
+    file: null,
+    type: null,
+    status: "upcoming",
+  },
+
+  // Final
+  {
+    id: "final-report",
+    milestone: "FINAL",
+    title: "Final Technical Report, Poster & Demo Video",
+    file: null,
+    type: null,
+    status: "upcoming",
+  },
+];
 
 export const commPlan = [
   { meeting: "Advisor sync slot", when: "Thursdays, 16:00 (as needed / on request)", who: "Team and advisor" },

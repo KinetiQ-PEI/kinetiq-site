@@ -29,12 +29,14 @@ npm run dev      # → http://localhost:5173
 
 ## Where to edit content
 
-Almost everything is data, not code. Day-to-day edits happen in two places:
+Almost everything is data, not code. Day-to-day edits happen in these places:
 
 | File | What it controls |
 |---|---|
 | `src/data/site.js` | Team, advisors, partners, goals, modules, milestones, roadmap, docs tables — all page text |
 | `src/content/minutes/` | One Markdown file per meeting minute |
+| `documents` / `documentGroups` in `src/data/site.js` | Documentation page: documents per milestone, group labels, dates and status |
+| `src/content/msN/` | Milestone files (PDFs), one folder per milestone (`ms1/`, `ms2/`, …) |
 
 Pages read from `site.js`; they hold no text themselves.
 
@@ -55,6 +57,29 @@ Pages read from `site.js`; they hold no text themselves.
    ```
 3. Write the body in plain Markdown below (tables, task lists, headings all work).
 4. Commit and push — it appears on the Minutes page automatically, newest first.
+
+---
+
+## Adding a document
+
+1. Put the file in `src/content/msN/` (e.g. `src/content/ms3/technical-risks.pdf`).
+2. Add (or update) an entry in `documents` in `src/data/site.js`:
+   ```js
+   {
+     id: "technical-risks",
+     milestone: "MS3",
+     title: "Technical Risks",
+     description: "One-line summary shown on the card.",
+     file: "ms3/technical-risks.pdf",           // relative to src/content
+     downloadName: "KinetiQ_MS3_Technical_Risks.pdf",
+     type: "PDF",
+     size: "120 KB",
+     pages: 4,
+     status: "available",                      // "available" | "in-revision" | "upcoming"
+     links: [{ label: "Canva", href: "https://…" }], // optional
+   }
+   ```
+3. It shows up on the Documentation page under its milestone and is counted on the Milestones page. A milestone's presentation should use an `id` ending in `presentation` so it becomes the main button there. If `file` doesn't exist, the dev server logs a warning and the document is shown as unavailable.
 
 ---
 

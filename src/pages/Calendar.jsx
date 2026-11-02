@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { nearTermEvents as EVENTS, roadmap as ROADMAP } from '../data/site.js';
+import { nearTermEvents as EVENTS, roadmap as ROADMAP, phases as PHASES } from '../data/site.js';
 
 const PHASE_CLASS = { Inception: 'ph-inception', Elaboration: 'ph-elaboration', Construction: 'ph-construction', Transition: 'ph-transition' };
 
@@ -36,13 +36,14 @@ export default function Calendar() {
     return EVENTS[key] || [];
   };
 
-  // Accordion state: Elaboration is current phase (Oct 2026)
-  const [openPhases, setOpenPhases] = useState({
-    Inception: false,
-    Elaboration: true,
-    Construction: false,
-    Transition: false,
-  });
+  // Current phase = last phase whose start date is on or before today
+  const currentIdx = PHASES.reduce((acc, p, i) => (p.start <= today ? i : acc), 0);
+  const currentPhase = PHASES[currentIdx].name;
+
+  // Accordion state: only the current phase starts open
+  const [openPhases, setOpenPhases] = useState(() =>
+    Object.fromEntries(PHASES.map((p) => [p.name, p.name === currentPhase]))
+  );
 
   const togglePhase = (phase) => {
     setOpenPhases((prev) => ({ ...prev, [phase]: !prev[phase] }));
@@ -69,14 +70,10 @@ export default function Calendar() {
   const allOpen = Object.values(openPhases).every(Boolean);
 
   const getPhaseBadge = (phase) => {
-    switch (phase) {
-      case 'Inception':
-        return { label: 'Completed', className: 'rm-badge-completed' };
-      case 'Elaboration':
-        return { label: 'Current Phase', className: 'rm-badge-current' };
-      default:
-        return { label: 'Upcoming', className: 'rm-badge-upcoming' };
-    }
+    const i = PHASES.findIndex((p) => p.name === phase);
+    if (i < currentIdx) return { label: 'Completed', className: 'rm-badge-completed' };
+    if (i === currentIdx) return { label: 'Current Phase', className: 'rm-badge-current' };
+    return { label: 'Upcoming', className: 'rm-badge-upcoming' };
   };
 
   return (

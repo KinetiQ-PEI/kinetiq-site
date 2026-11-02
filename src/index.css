@@ -1144,10 +1144,6 @@ td:first-child {
   color: var(--ink-2);
 }
 
-.ms-deliverable-icon {
-  font-size: 0.95rem;
-}
-
 .ms-deliverable-tag {
   font: 600 0.72rem 'Space Grotesk', sans-serif;
   letter-spacing: 0.04em;
@@ -1450,6 +1446,7 @@ footer {
   border-radius: var(--radius-xl);
   overflow: hidden;
   box-shadow: var(--shadow-sm);
+  scroll-margin-top: calc(var(--nav-h) + 1rem);
 }
 
 .doc-section-header {
@@ -1466,11 +1463,6 @@ footer {
   margin: 0;
   font-weight: 600;
   letter-spacing: -0.01em;
-}
-
-.doc-section-icon {
-  font-size: 1.1rem;
-  line-height: 1;
 }
 
 /* Document file cards */
@@ -1559,6 +1551,31 @@ footer {
   border-color: color-mix(in srgb, var(--green) 25%, transparent);
 }
 
+.doc-file-tag.in-revision {
+  background: color-mix(in srgb, var(--amber) 12%, transparent);
+  color: var(--amber);
+  border-color: color-mix(in srgb, var(--amber) 25%, transparent);
+}
+
+/* Milestone group header (phase, dates, status) and optional note */
+.doc-group-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  padding: 1rem 1.5rem 0;
+}
+
+.doc-group-note {
+  margin: 0.75rem 1.5rem 0;
+  padding: 0.65rem 0.9rem;
+  font-size: 0.82rem;
+  color: var(--ink-2);
+  background: var(--amber-bg);
+  border: 1px solid color-mix(in srgb, var(--amber) 25%, transparent);
+  border-radius: var(--radius-md);
+}
+
 .doc-file-actions {
   display: flex;
   gap: 0.5rem;
@@ -1607,6 +1624,7 @@ footer {
   .doc-file-actions {
     width: 100%;
     margin-top: 0.5rem;
+    flex-wrap: wrap;
   }
 }
 
